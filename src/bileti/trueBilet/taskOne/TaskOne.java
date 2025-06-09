@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class taskOne {
+public class TaskOne {
     public static void main(String[] args) {
         int size = 10_001;
         ArrayList<Integer> list = new ArrayList<>(size);

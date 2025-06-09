@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class taskTwo {
+public class TaskTwo {
     public static void main(String[] args) {
         int size = 100_001;
         ArrayList<Integer> list = new ArrayList<>(size);
@@ -67,7 +67,6 @@ public class taskTwo {
 }
 
 class WorkerThread extends Thread {
-    private boolean inWork;
     private int min = Integer.MAX_VALUE;
     private final ArrayList<Integer> list;
     private final int start;
@@ -81,20 +80,14 @@ class WorkerThread extends Thread {
 
     @Override
     public void run() {
-        inWork = true;
         for (int i = start; i < end; ++i) {
-            while (!inWork) {
-                try {
-                    this.wait();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+            synchronized (this) {
+                min = Math.min(min, list.get(i));
             }
-            min = Math.min(min, list.get(i));
         }
     }
 
-    public int getMin() {
+    public synchronized int getMin() {
         return min;
     }
 }
