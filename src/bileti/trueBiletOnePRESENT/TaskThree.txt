@@ -1,0 +1,20 @@
+Составьте HTTP-запрос (не URL, а разбивку на поля заголовков и тела)
+к сервису get_user на сайте guap.ru,
+передающий два параметра: имя (Василий) и возраст (20)
+
+telnet guap.ru 80
+GET /get_user?name="Василий"&age="20" HTTP/1.1
+Host: guap.ru
+
+Мэйби нужен второй вариант
+<form action="/get_user" method="GET">
+Name: <input type="text" name="name"><br>
+Age: <input type="number" age="age"><br>
+<input type="submit" value="Submit">
+</form>
+
+
+telnet guap.ru 80
+POST /get_user HTTP/1.1
+Host: guap.ru
+name="Василий"&age="20"
